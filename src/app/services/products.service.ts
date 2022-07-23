@@ -16,15 +16,10 @@ export class ProductsService {
     return this._http.get<IProduct[]>(this.url);
   }
 
-  getProduct(id: number) {
-    let productById = this.getProducts().subscribe((products: IProduct[]) => {
-      map((products: IProduct[]) => {
-        let product = products.find(product => product.id === id);
-        return product;
-      })
-    }
-    );
-
-    return productById;
+  getProduct(id: number): Observable<IProduct | undefined> {
+    return this.getProducts()
+      .pipe(
+        map((products: IProduct[]) => products.find(p => p.id === id))
+      );
   }
 }

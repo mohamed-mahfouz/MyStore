@@ -2,10 +2,13 @@
       <img class="card-img-top" alt="product.name" src="{{product.url}}" data-holder-rendered="true" style="height: 225px; width: 100%; display: block;">
        <div class="card-body text-center">
         <p>{{product.name}}</p>
-        <p>{{product.price| currency}}</p>
+        <p>{{product.price| currency}}</p> 
+              <select style="width: 25%; margin: auto;" class="form-select mb-3" [(ngModel)]="selectedAmount">
+                  <option *ngFor="let number of amount" [ngValue]="number">{{number}}</option>
+              </select>
         <div class="align-items-center">     
-          <a href="" class="btn btn-primary mx-3">Add to cart</a>
-          <a href="" class="btn btn-light">View details</a>       
+          <a (click)="addToCart()" class="btn btn-primary mx-3">Add to cart</a>
+          <a [routerLink]="['/products', product.id]"class="btn btn-light">View details</a>       
         </div>
       </div>
  </div>

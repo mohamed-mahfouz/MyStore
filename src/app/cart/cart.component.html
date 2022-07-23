@@ -1,1 +1,8 @@
-<p>cart works!</p>
+<div *ngIf="cartItems.length === 0">
+    <h1>No items added into cart!</h1>
+</div>
+
+<div *ngIf="cartItems.length > 0" class="row">
+    <app-cart-item *ngFor="let item of cartItems" [cartItem]="item"></app-cart-item>
+</div>
+  
