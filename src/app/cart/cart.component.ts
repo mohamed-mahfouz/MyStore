@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { ICartItem } from '../models/ICartItem';
 import { CartService } from '../services/cart.service';
 
@@ -13,12 +14,17 @@ export class CartComponent implements OnInit {
 
   cartTotal: number = 0;
   cartItems: ICartItem[] = [];
-
   constructor(private msg: CartService) { }
+
+
 
   ngOnInit(): void {
     this.cartItems = this.msg.getMsg();
-
+    this.cartItems.forEach(item => {
+      this.cartTotal! += (item.price! * item.amount!);
+    });
   }
+
+
 
 }

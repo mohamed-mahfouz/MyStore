@@ -7,15 +7,29 @@ import { ICartItem } from '../models/ICartItem';
 })
 export class CartService {
 
-  // subject = new Subject<ICartItem>();
   cartItems: ICartItem[] = [];
   constructor() { }
 
   sendMsg(cartItem: ICartItem) {
-    this.cartItems.push(cartItem);
+
+    if (!this.isItemExists(cartItem))
+      this.cartItems.push(cartItem);
   }
 
   getMsg() {
     return this.cartItems;
+  }
+
+  private isItemExists(cartItem: ICartItem) {
+    let isExists = false;
+    for (let i = 0; i < this.cartItems.length; i++) {
+      if (this.cartItems[i].name === cartItem.name) {
+        this.cartItems[i].amount = cartItem.amount;
+        isExists = true;
+        break;
+      }
+    }
+
+    return isExists;
   }
 }

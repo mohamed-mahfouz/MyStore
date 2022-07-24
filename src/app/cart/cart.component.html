@@ -1,8 +1,15 @@
-<div *ngIf="cartItems.length === 0">
+<div *ngIf="cartItems.length === 0 ">
     <h1>No items added into cart!</h1>
 </div>
 
-<div *ngIf="cartItems.length > 0" class="row">
-    <app-cart-item *ngFor="let item of cartItems" [cartItem]="item"></app-cart-item>
+
+<div *ngIf="cartItems.length > 0 " class="row">
+    <div class="col-md-6">
+        <app-cart-item *ngFor="let item of cartItems" [cartItem]="item"></app-cart-item>
+    </div>
+        <app-checkout-form  class="col-md-6"></app-checkout-form>
+
+<h4 class="mt-3">Total: {{cartTotal | currency}}</h4>
 </div>
+
   

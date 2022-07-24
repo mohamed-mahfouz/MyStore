@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-checkout-form',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CheckoutFormComponent implements OnInit {
 
-  constructor() { }
+  isSucessCheckout = false;
+  successCheckout: EventEmitter<boolean> = new EventEmitter<boolean>();
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  onSubmit() {
+    this.router.navigate(['/success']);
   }
 
 }

@@ -1,1 +1,21 @@
-<p>checkout-form works!</p>
+
+<form #form = "ngForm" class="mt-4" (ngSubmit)="onSubmit()">   
+   <div class="form-group">
+        <label for="">Full name</label>
+        <input required minlength="6" name="fullName" type="text" placeholder="Full name must be at least 6 characters" class="form-control" #fullName="ngModel" ngModel>
+    </div>
+
+    <div class="form-group mt-3">
+        <label for="">Address</label>
+        <input required minlength="5" name="address"type="text" placeholder="Address must be at least 5 characters" class="form-control" #address= "ngModel" ngModel>
+    </div>
+
+    <div class="form-group mt-3">
+        <label for="">Credit number</label>
+        <input required pattern="^[0-9]{16}$" name="creditNumber" type="number" placeholder="Enter 16 numbers" class="form-control" #creditNumber = "ngModel" ngModel>
+    </div>
+
+    <input type="submit" [disabled]="form.invalid" value="Submit" class="mt-4 btn btn-primary">
+</form>
+
+
